@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+  <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> -->
   <button onclick="checkLoginState()">登入</button>
   <button onclick="logout()">登出</button>
   <h1>Privacy Policy</h1>
@@ -210,9 +210,9 @@
 
   function checkLoginState() {
     FB.getLoginStatus(function (response) {
-      if(response.authResponse){
+      if (response.authResponse) {
         console.log(response)
-      }else{
+      } else {
         login()
       }
     });
@@ -226,7 +226,7 @@
           console.log(response);
         });
       }
-    });
+    }, { scope: 'email' });
   }
 
   function logout() {
