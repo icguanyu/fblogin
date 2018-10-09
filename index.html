@@ -217,6 +217,11 @@
   function login() {
     FB.login(function (response) {
       console.log(response);
+      if (response.status === "connected") {
+        FB.api('/me', function (response) {
+          console.log(response);
+        });
+      }
     }, {
         scope: 'email',
         auth_type: 'rerequest'
