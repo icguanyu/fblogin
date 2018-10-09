@@ -43,7 +43,9 @@
       console.log(response);
       let accessToken = response.authResponse.accessToken
       if (response.status === "connected") {
-        FB.api("/me?fields=name,email", function (response) {
+        FB.api('/me', {
+          'fields': 'id,name,gender,email'
+        },function (response) {
           console.log(response);
         });
       }
