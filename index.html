@@ -9,8 +9,8 @@
 </head>
 
 <body>
-  <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> -->
-  <button onclick="checkLoginState()">登入</button>
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+  <button onclick="login()">登入</button>
   <button onclick="logout()">登出</button>
   <h1>Privacy Policy</h1>
   <!-- <div class="policy">
@@ -210,27 +210,19 @@
 
   function checkLoginState() {
     FB.getLoginStatus(function (response) {
-      if (response.authResponse) {
-        console.log(response)
-      } else {
-        login()
-      }
+      console.log(response)
     });
   }
 
   function login() {
     FB.login(function (response) {
       console.log(response);
-      let id = response.authResponse.userID
       if (response.status === "connected") {
         FB.api('https://graph.facebook.com/me', function (response) {
           console.log(response);
         });
       }
-    }, {
-        scope: 'email',
-        auth_type: 'rerequest'
-      });
+    });
   }
 
   function logout() {
