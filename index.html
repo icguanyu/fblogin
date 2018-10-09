@@ -20,6 +20,10 @@
       cookie: true,
       xfbml: true,
       version: 'v3.1'
+    }, function () {
+      FB.getLoginStatus(function (response) {
+        console.log(response)
+      });
     });
     FB.AppEvents.logPageView();
   };
@@ -41,11 +45,10 @@
   function login() {
     FB.login(function (response) {
       console.log(response);
-      let accessToken = response.authResponse.accessToken
       if (response.status === "connected") {
         FB.api('/me', {
-          'fields': 'id,name,gender,email'
-        },function (response) {
+          'fields': 'id,name,email'
+        }, function (response) {
           console.log(response);
         });
       }
