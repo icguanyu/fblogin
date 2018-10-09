@@ -221,12 +221,16 @@
   function login() {
     FB.login(function (response) {
       console.log(response);
+      let id = response.authResponse.userID
       if (response.status === "connected") {
-        FB.api('/me', function (response) {
+        FB.api('https://graph.facebook.com/me', function (response) {
           console.log(response);
         });
       }
-    }, { scope: 'email' });
+    }, {
+        scope: 'email',
+        auth_type: 'rerequest'
+      });
   }
 
   function logout() {
