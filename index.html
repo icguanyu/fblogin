@@ -217,7 +217,10 @@
   function login() {
     FB.login(function (response) {
       console.log(response);
-    }, { scope: 'email' });
+    }, {
+        scope: 'email',
+        auth_type: 'rerequest'
+      });
   }
 
   function logout() {
