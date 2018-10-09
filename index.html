@@ -9,7 +9,8 @@
 </head>
 
 <body>
-  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"> </fb:login-button>
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+  <button onclick="login()">登入</button>
   <button onclick="logout()">登出</button>
   <h1>Privacy Policy</h1>
   <!-- <div class="policy">
@@ -210,9 +211,12 @@
   function checkLoginState() {
     FB.getLoginStatus(function (response) {
       console.log(response)
-      FB.api('/me/permissions', function (response) {
-        console.log(JSON.stringify(response));
-      });
+    });
+  }
+
+  function login() {
+    FB.login(function (response) {
+      console.log(response);
     });
   }
 
