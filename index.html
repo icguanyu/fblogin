@@ -34,10 +34,9 @@
 
   function checkLoginState() {
     FB.getLoginStatus(function (response) {
-      if(response.status === 'connected'){//如果狀態為登入,就不用登入嘛
-        console.log('你已經登入囉'+response)
-      }else{
-        console.log(response)
+      if (response.status === 'connected') {//如果狀態為登入,就不用登入嘛
+        console.log('你已經登入囉')
+      } else {
         login()
       }
     });
@@ -46,15 +45,17 @@
   function login() {
     FB.login(function (response) {
       console.log(response);
-      //let accessToken = response.authResponse.accessToken
       if (response.status === "connected") {
         FB.api('/me', {
-          'fields': 'id,name,email'
-        },function (response) {
+          'fields': 'id,name,email,default'
+        }, function (response) {
           console.log(response);
         });
       }
-    });
+    }, {
+        scope: 'id,name,email',
+        auth_type: 'rerequest'
+      });
   }
 
   function logout() {
