@@ -47,13 +47,13 @@
       console.log(response);
       if (response.status === "connected") {
         FB.api('/me', {
-          'fields': 'email'
+          'fields': 'id,name,email,picture'
         }, function (response) {
           console.log(response);
         });
       }
     }, {
-        scope: 'email,picture',
+        scope: 'email',
         auth_type: 'rerequest'
       });
   }
